@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "lsw-g1/gsb-laravel",
+    "description": "GSB-Frais, but with Laravel",
+    "keywords": ["GSB-Frais", "LSW"],
     "license": "MIT",
     "type": "project",
     "require": {
