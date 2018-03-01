@@ -11,6 +11,21 @@
 |
 */
 
+/**
 Route::get('/', function () {
     return view('welcome');
+});
+
+ **/
+
+Route::get("/login", function() {
+    return view("gsb.login");
+});
+
+Route::group(["middleware" => ["Auth"]], function() {
+
+    Route::get("/", function() {
+        return view("gsb.index");
+    });
+
 });
