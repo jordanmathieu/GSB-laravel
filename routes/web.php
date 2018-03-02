@@ -18,9 +18,10 @@ Route::get('/', function () {
 
  **/
 
-Route::get("/login", function() {
-    return view("gsb.login");
-});
+Route::get("/login", "VisiteursController@login")->name("visiteur.login");
+Route::post("/login", "VisiteursController@check")->name("visiteur.check");
+
+
 
 Route::group(["middleware" => ["Auth"]], function() {
 
@@ -28,4 +29,5 @@ Route::group(["middleware" => ["Auth"]], function() {
         return view("gsb.index");
     });
 
+    Route::get("/logoff", "VisiteursController@logoff")->name("visiteur.logoff");
 });
