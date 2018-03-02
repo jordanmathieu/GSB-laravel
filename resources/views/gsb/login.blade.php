@@ -1,16 +1,5 @@
 @extends("gsb.includes.template")
 @section("content")
-    @if (Session::has("success"))
-        <div class="alert alert-primary" role="alert">
-            <li>{{ Session::get("success") }}</li>
-        </div>
-    @endif
-    @if (Session::has("error"))
-        <div class="alert alert-danger" role="alert">
-            <li>{{ Session::get("error") }}</li>
-        </div>
-    @endif
-
     <form method="POST" action="{{ route("visiteur.check") }}">
         {{ csrf_field() }}
 

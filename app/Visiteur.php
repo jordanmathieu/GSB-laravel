@@ -6,14 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visiteur extends Model
 {
-    // PREVENTS PRIMARY_KEY from being treated as int
+    // TABLE NAME: Laravel is expecting visiteur
+    protected $table = "Visiteur";
+
+    // PRIMARY_KEY TYPE: Laravel is expecting an int, autoincrement
     public $incrementing = false;
+    protected $keyType = "string";
 
-    // Forces the Table name to be Visiteur and not visiteur
-    protected $table = 'Visiteur';
+    // TIMESTAMPS: Laravel is expecting created_at and updated_at
+    public $timestamps = false;
 
+
+    /**
+     * Visiteur is linked to FicheFrais
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function FicheFrais()
     {
+        // One Visiteur has Many FicheFrais (1 per month, in theory)
         return $this->hasMany(FicheFrais::class, "idVisiteur");
     }
 
