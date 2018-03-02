@@ -7,8 +7,8 @@
             @if (Session::has("Visiteur"))
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        {{ Session::get("Visiteur")[0]->nom }}
-                        {{ Session::get("Visiteur")[0]->prenom }}
+                        {{ Session::get("Visiteur")->nom }}
+                        {{ Session::get("Visiteur")->prenom }}
                     </a>
                 </li>
                 <li class="nav-item">

@@ -28,7 +28,7 @@ class VisiteursController extends Controller
         if ($Visiteur)
         {
             Session::flash("success", "Visiteur connecté.");
-            Session::push("Visiteur", $Visiteur);
+            Session::put("Visiteur", $Visiteur);
             return redirect(route("visiteur.login"));
         }
         else
