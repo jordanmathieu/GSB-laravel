@@ -39,7 +39,7 @@ class Frais extends Seeder
             "login" => "root",
             "password" => "root",
             "adresse" => "",
-            "cp" => "",
+            "cp" => 0,
             "ville" => "",
             "dateEmbauche" => $faker->dateTime()
         ]);
