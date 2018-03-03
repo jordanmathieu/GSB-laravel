@@ -87,7 +87,7 @@ class GsbFrais extends Migration
     {
         Schema::dropIfExists("LigneFraisHorsForfait");
         Schema::dropIfExists("FicheFrais");
-        Schema::dropIfExists("Etats");
+        Schema::dropIfExists("Etat");
         Schema::dropIfExists("Visiteur");
     }
 }
