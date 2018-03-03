@@ -31,7 +31,12 @@
             </h6>
             <ul class="nav flex-column mb-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route("gsb.frais.index") }}">
+                        Fiches Frais
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route("gsb.frais.horsforfait.index") }}">
                         Frais Hors Forfait
                     </a>
                 </li>

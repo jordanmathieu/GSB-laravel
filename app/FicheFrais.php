@@ -9,13 +9,6 @@ class FicheFrais extends Model
     // TABLE NAME: Laravel is expecting visiteur
     protected $table = "FicheFrais";
 
-    //  PRIMARY_KEY COUPLE: Laravel is expecting 1 primary key, 1 column named "id"
-    protected $primaryKey = ["idVisiteur", "mois"];
-
-    // PRIMARY_KEY TYPE: Laravel is expecting an int, autoincrement
-    public $incrementing = false;
-    protected $keyType = "string";
-
     // TIMESTAMPS: Laravel is expecting created_at and updated_at
     public $timestamps = false;
 
@@ -35,4 +28,8 @@ class FicheFrais extends Model
     }
 
 
+    public function FraisHorsForfait()
+    {
+        return $this->hasMany(FraisHorsForfait::class, "id");
+    }
 }

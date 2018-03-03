@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Visiteur extends Model
@@ -25,6 +26,16 @@ class Visiteur extends Model
     {
         // One Visiteur has Many FicheFrais (1 per month, in theory)
         return $this->hasMany(FicheFrais::class, "idVisiteur");
+    }
+
+    public function FraisHorsForfait()
+    {
+        return $this->hasMany(FraisHorsForfait::class, "idVisiteur");
+    }
+
+    public function FraisHorsForfaitMonth()
+    {
+        return $this->hasMany(FraisHorsForfait::class, "idVisiteur")->where("mois", "=", Carbon::now()->month);
     }
 
 }

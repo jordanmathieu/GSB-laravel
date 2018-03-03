@@ -25,7 +25,8 @@ Route::post("/login", "VisiteursController@check")->name("visiteur.check");
 
 Route::group(["middleware" => ["Auth"]], function() {
 
-    Route::get("/", "FraisController@index")->name("gsb.frais.list");
+    Route::get("/", "FraisController@index")->name("gsb.frais.index");
+    Route::get("/frais/hors-forfait", "FraisController@indexHorsForfait")->name("gsb.frais.horsforfait.index");
 
     Route::get("/logoff", "VisiteursController@logoff")->name("visiteur.logoff");
 });

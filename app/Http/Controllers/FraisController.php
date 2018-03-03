@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FicheFrais;
+use App\FraisHorsForfait;
 use App\Visiteur;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -19,16 +20,16 @@ class FraisController extends Controller
         // We need Today's date
         $currentDate = Carbon::now();
 
-        // No query is made here, as $Visiteur is requested from the Session
+        // Fetch the Visiteur from the Session
         $Visiteur = Session::get("Visiteur");
 
-        // Forces a query to FicheFrais table to sync the data
+        // Refresh FicheFrais data in the Session, from the DB
         $Visiteur->load('FicheFrais');
 
-        // No query is made here, as FicheFrais is requested from the Visiteur, which is saved in the Session
+        // Fetch the FicheFrais from the Session
         $FicheFrais = $Visiteur->FicheFrais;
 
-        // Check if an entry has the month equals to the current one
+        // Check if a FicheFrais has been created for the current month
         if (!($FicheFrais->contains("mois", $currentDate->month)))
         {
             // Create a new FicheFrais
@@ -49,10 +50,29 @@ class FraisController extends Controller
             Session::flash("information", "Une Fiche Frais à été créée.");
 
             // Refreshes the Page
-            return redirect(route("gsb.frais.list"));
+            return redirect(route("gsb.frais.index"));
         }
 
-        // Shows them the FicheFrais
-        return view("gsb.frais.list", compact("Visiteur", "FicheFrais"));
+        // Returns the View, with the FicheFrais
+        return view("gsb.frais.fiches", compact("FicheFrais"));
+    }
+
+    /**
+     * Show the list of LignesFraisHorsForfait
+     * @return View
+     */
+    public function indexHorsForfait(): View
+    {
+        // Fetch the Visiteur from the Session
+        $Visiteur = Session::get("Visiteur");
+
+        // Refresh the FraisHorsForfait data in the Session, from the DB, only for the current month
+        $Visiteur->load("FraisHorsForfaitMonth");
+
+        // Fetch the FraisHorsForfait from the Session, only for the current month
+        $FraisHorsForfait = $Visiteur->FraisHorsForfaitMonth;
+
+        // Returns the View, with the FraisHorsForfait
+        return view("gsb.frais.hors-forfait.index", compact("FraisHorsForfait"));
     }
 }
