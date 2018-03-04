@@ -12,6 +12,10 @@ class FraisHorsForfait extends Model
     // TIMESTAMPS: Laravel is expecting created_at and updated_at
     public $timestamps = false;
 
+    // FILLABLE: We allow theses columns to be modified [added/updated]
+    protected $fillable = ['idVisiteur', 'mois', 'libelle', 'montant', 'date'];
+
+
     public function Visiteur()
     {
         return $this->belongsTo(Visiteur::class,"idVisiteur");
