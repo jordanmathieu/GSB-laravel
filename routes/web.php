@@ -31,5 +31,5 @@ Route::group(["middleware" => ["Auth"]], function() {
     Route::get("/frais/hors-forfait/new", "FraisController@newHorsForfait")->name("gsb.frais.horsforfait.new");
     Route::post("/frais/hors-forfait", "FraisController@checkHorsForfait")->name("gsb.frais.horsforfait.check");
 
-    Route::get("/logoff", "VisiteursController@logoff")->name("visiteur.logoff");
+    Route::get("/logout", "VisiteursController@logout")->name("visiteur.logout");
 });

@@ -70,7 +70,7 @@ class VisiteursController extends Controller
      * Logs off the Visiteur and redirect them to the login page
      * @return RedirectResponse
      */
-    public function logoff(): RedirectResponse
+    public function logout(): RedirectResponse
     {
         // Deletes everything.
         Session::flush();

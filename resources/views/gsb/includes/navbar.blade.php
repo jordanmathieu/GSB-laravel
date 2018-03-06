@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("visiteur.logoff") }}">
+                    <a class="nav-link" href="{{ route("visiteur.logout") }}">
                         Se déconnecter
                     </a>
                 </li>
