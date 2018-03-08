@@ -52,7 +52,7 @@ class Frais extends Seeder
 
         Etat::create([
             "id" => "CL",
-            "libelle" => "	Saisie clôturée"
+            "libelle" => "Saisie clôturée"
         ]);
     }
 }

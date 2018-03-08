@@ -25,7 +25,7 @@ Route::post("/login", "VisiteursController@check")->name("visiteur.check");
 
 Route::group(["middleware" => ["Auth"]], function() {
 
-    Route::get("/", "FraisController@index")->name("gsb.frais.index");
+    Route::get("/", "FichesController@index")->name("gsb.fiches.index");
 
     Route::get("/frais/hors-forfait", "FraisController@indexHorsForfait")->name("gsb.frais.horsforfait.index");
     Route::get("/frais/hors-forfait/new", "FraisController@newHorsForfait")->name("gsb.frais.horsforfait.new");

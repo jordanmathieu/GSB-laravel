@@ -52,7 +52,7 @@ class VisiteursController extends Controller
             Session::flash("success", "Bienvenue, $Visiteur->nom $Visiteur->prenom.");
 
             // Redirects the Visiteur to the main page
-            return redirect(route("gsb.frais.index"));
+            return redirect(route("gsb.fiches.index"));
         }
         else
         {
