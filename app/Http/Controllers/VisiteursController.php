@@ -15,11 +15,11 @@ class VisiteursController extends Controller
      * Shows the login view
      * @return object
      */
-    public function login(): object  // Eitther View or RedirectResponse...
+    public function login(): object  // Either View or RedirectResponse...
     {
         if (!Session::has("Visiteur"))
         {
-            // Shows them tthe login view
+            // Shows them the login view
             return view("gsb.login");
         }
         // They're already logged in, redirects them to the main website
