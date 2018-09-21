@@ -2,6 +2,7 @@
 
 use App\Etat;
 use App\Visiteur;
+use App\TypeFraisForfait;
 use Illuminate\Database\Seeder;
 
 class Frais extends Seeder
@@ -53,6 +54,27 @@ class Frais extends Seeder
         Etat::create([
             "id" => "CL",
             "libelle" => "Saisie clôturée"
+        ]);
+
+        //CREATE Type of FraisForfait
+        TypeFraisForfait::create([
+            "libelle" => "Forfait Etape",
+            "montant" => 110.0
+        ]);
+
+        TypeFraisForfait::create([
+            "libelle" => "Frais Kilométrique",
+            "montant" => 0.62
+        ]);
+
+        TypeFraisForfait::create([
+            "libelle" => "Nuitée Hôtel",
+            "montant" => 80.0
+        ]);
+
+        TypeFraisForfait::create([
+            "libelle" => "Repas Restaurant",
+            "montant" => 25.0
         ]);
     }
 }

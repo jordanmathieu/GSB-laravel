@@ -34,12 +34,12 @@ class FichesController extends Controller
             $FicheFrais = new FicheFrais();
 
             // Sets the default values
-            $FicheFrais->idVisiteur = $Visiteur->id;
+            $FicheFrais->refVisiteur = $Visiteur->id;
             $FicheFrais->mois = $currentDate->month;
             $FicheFrais->nbJustificatif = 0;
             $FicheFrais->montantValide = 0;
             $FicheFrais->dateModif = $currentDate;
-            $FicheFrais->idEtat = "CR";
+            $FicheFrais->refEtat = "CR";
 
             // Send the new FicheFrais to DB
             $FicheFrais->save();

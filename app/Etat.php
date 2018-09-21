@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Etat extends Model
 {
     // TABLE NAME: Laravel is expecting etat
-    protected $table = "Etat";
+    protected $table = "Etats";
 
     // PRIMARY_KEY TYPE: Laravel is expecting an int, autoincrement
     public $incrementing = false;

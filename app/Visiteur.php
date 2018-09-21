@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Visiteur extends Model
 {
     // TABLE NAME: Laravel is expecting visiteur
-    protected $table = "Visiteur";
+    protected $table = "Visiteurs";
 
     // PRIMARY_KEY TYPE: Laravel is expecting an int, autoincrement
     public $incrementing = false;
@@ -25,17 +25,17 @@ class Visiteur extends Model
     public function FicheFrais()
     {
         // One Visiteur has Many FicheFrais (1 per month, in theory)
-        return $this->hasMany(FicheFrais::class, "idVisiteur");
+        return $this->hasMany(FicheFrais::class, "refVisiteur");
     }
 
     public function FraisHorsForfait()
     {
-        return $this->hasMany(FraisHorsForfait::class, "idVisiteur");
+        return $this->hasMany(FraisHorsForfait::class, "refVisiteur");
     }
 
-    public function FraisHorsForfaitMonth()
+    public function FraisHorsForfaitMonth(int $month)
     {
-        return $this->hasMany(FraisHorsForfait::class, "idVisiteur")->where("mois", "=", Carbon::now()->month);
+        return $this->FicheFrais()->where('mois', '=', $month)->get();
     }
 
 }

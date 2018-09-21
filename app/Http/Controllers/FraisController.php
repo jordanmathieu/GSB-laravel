@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FicheFrais;
 use App\FraisHorsForfait;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
@@ -20,11 +21,8 @@ class FraisController extends Controller
         // Fetch the Visiteur from the Session
         $Visiteur = Session::get("Visiteur");
 
-        // Refresh the FraisHorsForfait data in the Session, from the DB, only for the current month
-        $Visiteur->load("FraisHorsForfaitMonth");
-
         // Fetch the FraisHorsForfait from the Session, only for the current month
-        $FraisHorsForfait = $Visiteur->FraisHorsForfaitMonth;
+        $FraisHorsForfait = $Visiteur->FraisHorsForfaitMonth(Carbon::now()->month)[0]->FraisHorsForfait;
 
         // Returns the View, with the FraisHorsForfait
         return view("gsb.frais.hors-forfait.index", compact("FraisHorsForfait"));
@@ -58,8 +56,7 @@ class FraisController extends Controller
 
         // Add the FraisHorsForfait to the DB
         FraisHorsForfait::create([
-            "idVisiteur" => $Visiteur->id,
-            "mois" => Carbon::now()->month,
+            "refFicheFrais" => $Visiteur->FicheFrais[0]->id,
             "libelle" => $request->input("libelle"),
             "montant" => $request->input("montant"),
             "date" => $request->input("date")
@@ -86,7 +83,7 @@ class FraisController extends Controller
         $frais = FraisHorsForfait::find($idFrais);
 
         // Check if the Frais exists and the author is the Visiteur
-        if (!empty($frais) && $frais->idVisiteur == $Visiteur->id) {
+        if (!empty($frais) && $frais->refFicheFrais == $Visiteur->FicheFrais[0]->id) {
             // All good, delete from DB
             $frais->delete();
 
