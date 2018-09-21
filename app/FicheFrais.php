@@ -31,4 +31,13 @@ class FicheFrais extends Model
     {
         return $this->hasMany(FraisHorsForfait::class, 'refFicheFrais');
     }
+
+    /**
+     * FicheFrais is linked to LigneFraisForfait
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function LigneFraisForfait()
+    {
+        return $this->hasMany(LigneFraisForfait::class, 'refFicheFrais');
+    }
 }
