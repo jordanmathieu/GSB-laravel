@@ -9,13 +9,17 @@
         <label class="card-header">Types de Frais Forfait</label>
         <form action="{{ redirect(route("gsb.frais.forfait.new")) }}">
             <div class="card-body  align-self-center">
-                @foreach($TypeFrais as $type)
-                    {{$type->libelle}} : <input value=0 id="{{$type->id}}"> <br>
+
+                @foreach ($FicheFrais->LignesFraisForfait as $Frais)
+                    <div class="form-group">
+                        <label for="{{ $Frais->TypeFraisForfait->id }}">{{ $Frais->TypeFraisForfait->libelle }}</label>
+                        <input id="{{ $Frais->TypeFraisForfait->id }}" class="form-control"}} type="text" value="{{ $Frais->quantite }}">
+                    </div>
                 @endforeach
             </div>
             <div class="card-footer">
-                <input type="submit" value="Valider">
+                <button class="btn btn-outline-primary" type="submit">Valider</button>
             </div>
-        </form>
+    </form>
     </div>
 @endsection

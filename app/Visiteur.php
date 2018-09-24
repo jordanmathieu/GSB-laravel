@@ -35,7 +35,7 @@ class Visiteur extends Model
 
     public function FraisMonth(int $month)
     {
-        return $this->FicheFrais()->where('mois', '=', $month)->get();
+        return $this->FicheFrais()->where('mois', '=', $month)->first();
     }
 
 }
