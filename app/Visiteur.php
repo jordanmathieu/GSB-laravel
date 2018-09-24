@@ -33,7 +33,7 @@ class Visiteur extends Model
         return $this->hasMany(FraisHorsForfait::class, "refVisiteur");
     }
 
-    public function FraisHorsForfaitMonth(int $month)
+    public function FraisMonth(int $month)
     {
         return $this->FicheFrais()->where('mois', '=', $month)->get();
     }

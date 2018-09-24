@@ -1,7 +1,7 @@
 @extends("gsb.includes.template")
 @section("content")
     <h4>
-        Mes frais Hors Forfait
+        Mes Frais Hors Forfait
         <a href="{{ route("gsb.frais.horsforfait.new") }}">
             <button type="button" class="btn btn-outline-primary float-right">+ Ajouter</button>
         </a>

@@ -6,7 +6,7 @@
         <ul class="nav flex-column mb-2">
             @if (Session::has("Visiteur"))
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route("gsb.fiches.index") }}">
                         {{ Session::get("Visiteur")->nom }}
                         {{ Session::get("Visiteur")->prenom }}
                     </a>
@@ -31,7 +31,7 @@
             </h6>
             <ul class="nav flex-column mb-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("gsb.fiches.index") }}">
+                    <a class="nav-link" href="{{ route("gsb.frais.forfait.index") }}">
                         Fiches Frais
                     </a>
                 </li>

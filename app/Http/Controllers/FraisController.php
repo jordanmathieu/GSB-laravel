@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FicheFrais;
 use App\FraisHorsForfait;
+use App\TypeFraisForfait;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,13 +17,39 @@ class FraisController extends Controller
      * Show the list of LignesFraisHorsForfait
      * @return View
      */
+    public function indexForfait(): View
+    {
+        // Fetch the Visiteur from the Session
+        $Visiteur = Session::get("Visiteur");
+
+        // Fetch the FraisHorsForfait from the Session, only for the current month
+        $FraisForfait = $Visiteur->FraisMonth(Carbon::now()->month)[0]->LignesFraisForfait;
+
+        $TypeFrais = TypeFraisForfait::all();
+
+        // Returns the View, with the FraisHorsForfait
+        return view("gsb.frais.forfait.index", compact("FraisForfait", "TypeFrais"));
+    }
+    /**
+     * Shows the form to add a new Frais
+     * @return View
+     */
+    public function newForfait(): View
+    {
+        return view("gsb.frais.forfait.index");
+    }
+
+    /**
+     * Show the list of LignesFraisHorsForfait
+     * @return View
+     */
     public function indexHorsForfait(): View
     {
         // Fetch the Visiteur from the Session
         $Visiteur = Session::get("Visiteur");
 
         // Fetch the FraisHorsForfait from the Session, only for the current month
-        $FraisHorsForfait = $Visiteur->FraisHorsForfaitMonth(Carbon::now()->month)[0]->FraisHorsForfait;
+        $FraisHorsForfait = $Visiteur->FraisMonth(Carbon::now()->month)[0]->FraisHorsForfait;
 
         // Returns the View, with the FraisHorsForfait
         return view("gsb.frais.hors-forfait.index", compact("FraisHorsForfait"));
