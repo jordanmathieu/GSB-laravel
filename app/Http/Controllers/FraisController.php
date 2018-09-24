@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\FicheFrais;
 use App\FraisHorsForfait;
 use App\LigneFraisForfait;
 use App\TypeFraisForfait;
@@ -26,6 +25,7 @@ class FraisController extends Controller
 
 		$FicheFrais = $Visiteur->FraisMonth(Carbon::now()->month)->with('LignesFraisForfait.TypeFraisForfait')->get()[0];
 
+		// If the FicheFrais doesn't have a LignesFraisForfait, that's create then
 		if ($FicheFrais->LignesFraisForfait->isEmpty()) {
 			$TypesFraisForfait = TypeFraisForfait::orderBy("libelle", "ASC")->get();
 			if ($TypesFraisForfait->isNotEmpty()) {
@@ -47,11 +47,27 @@ class FraisController extends Controller
 	/**
 	 * Shows the form to add a new Frais
 	 *
-	 * @return View
+	 * @param Request $request
+	 * @return RedirectResponse
 	 */
-	public function newForfait(): View
+	public function newForfait(Request $request): RedirectResponse
 	{
-		return view("gsb.frais.forfait.index");
+		// Fetch the Visiteur from the Session
+		$Visiteur = Session::get("Visiteur");
+
+		// Get the last FicheFrais of Visiteur
+		$FicheFrais = $Visiteur->FraisMonth(Carbon::now()->month);
+
+		foreach ($request->except(["_token"]) as $key => $value) {
+			// Update every LigneFraisForfait linked to the Visiteur FicheFrais
+			$LigneFraisForfait = LigneFraisForfait::where('refFicheFrais', $FicheFrais->id)->where('refTypeFraisForfait', $key);
+			$LigneFraisForfait->update([
+				'quantite' => $value,
+			]);
+		}
+
+		// Return to the frais forfait page
+		return redirect(route("gsb.frais.forfait.index"));
 	}
 
 	/**

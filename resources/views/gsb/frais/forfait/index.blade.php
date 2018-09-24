@@ -7,19 +7,21 @@
 
     <div class="card">
         <label class="card-header">Types de Frais Forfait</label>
-        <form action="{{ redirect(route("gsb.frais.forfait.new")) }}">
+        <form action="{{ route("gsb.frais.forfait.new") }}" method="POST">
+            {{ csrf_field() }}
+
             <div class="card-body  align-self-center">
 
                 @foreach ($FicheFrais->LignesFraisForfait as $Frais)
                     <div class="form-group">
                         <label for="{{ $Frais->TypeFraisForfait->id }}">{{ $Frais->TypeFraisForfait->libelle }}</label>
-                        <input id="{{ $Frais->TypeFraisForfait->id }}" class="form-control"}} type="text" value="{{ $Frais->quantite }}">
+                        <input name="{{ $Frais->TypeFraisForfait->id }}" id="{{ $Frais->TypeFraisForfait->id }}" class="form-control" type="text" value="{{ $Frais->quantite }}">
                     </div>
                 @endforeach
             </div>
             <div class="card-footer">
-                <button class="btn btn-outline-primary" type="submit">Valider</button>
+                <button class="btn btn-outline-primary">Valider</button>
             </div>
-    </form>
+        </form>
     </div>
 @endsection
