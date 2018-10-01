@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\FicheFrais;
-use App\Visiteur;
+use App\Models\FicheFrais;
+use App\Models\Visiteur;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class VisiteursController extends Controller
@@ -33,12 +34,15 @@ class VisiteursController extends Controller
      */
     public function check(Request $request): RedirectResponse
     {
-        // Select the Visiteur with the login an password
-        // SECURITY WARNING
-        // The password isn't hashed !
+        // Get the hashed password of the user to verify
+        $hashedPassword = Visiteur::select("password")
+            ->where("login", "=", $request->username)
+            ->first();
+
+        // Select the Visiteur with the login and hashed password
         $Visiteur = Visiteur::select(["id", "nom", "prenom", "adresse", "cp", "ville", "dateEmbauche"])
             ->where("login", "=", $request->username)
-            ->where("password", "=", $request->password)
+            ->where("password", "=",  Hash::check($request->password, $hashedPassword))
             ->first();
 
         if ($Visiteur)

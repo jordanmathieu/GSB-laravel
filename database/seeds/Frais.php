@@ -1,8 +1,9 @@
 <?php
 
-use App\Etat;
-use App\Visiteur;
-use App\TypeFraisForfait;
+use App\Models\Etat;
+use App\Models\Visiteur;
+use App\Models\TypeFraisForfait;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 
 class Frais extends Seeder
@@ -24,7 +25,7 @@ class Frais extends Seeder
                 "nom" => $faker->lastName(),
                 "prenom" => $faker->firstName(),
                 "login" => $id,
-                "password" => $id,
+                "password" => Hash::make($id),
                 "adresse" => $faker->streetAddress(),
                 "cp" => $faker->numberBetween(1, 99999),
                 "ville" => $faker->city(),
@@ -38,7 +39,7 @@ class Frais extends Seeder
             "nom" => "developer",
             "prenom" => "",
             "login" => "root",
-            "password" => "root",
+            "password" => Hash::make("root"),
             "adresse" => "",
             "cp" => 0,
             "ville" => "",

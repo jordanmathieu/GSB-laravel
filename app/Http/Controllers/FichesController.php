@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FicheFrais;
+use App\Models\FicheFrais;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 

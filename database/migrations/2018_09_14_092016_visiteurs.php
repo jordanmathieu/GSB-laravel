@@ -19,6 +19,7 @@ class Visiteurs extends Migration
          */
         Schema::create("Visiteurs", function (Blueprint $table) {
             $table->string("id", 4);
+
             $table->string("nom");
             $table->string("prenom");
             $table->string("login");

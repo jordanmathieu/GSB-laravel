@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\FraisHorsForfait;
-use App\LigneFraisForfait;
-use App\TypeFraisForfait;
+use App\Models\FraisHorsForfait;
+use App\Models\LigneFraisForfait;
+use App\Models\TypeFraisForfait;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
