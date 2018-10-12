@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FicheFrais;
 use App\Models\FraisHorsForfait;
 use App\Models\LigneFraisForfait;
 use App\Models\TypeFraisForfait;
@@ -130,7 +131,18 @@ class FraisController extends Controller
 		return redirect(route("gsb.frais.horsforfait.index"));
 	}
 
-	/**
+    /***
+     * @return View
+     */
+    public function moisHorsForfait(): View
+    {
+        $Visiteur = Session::get("Visiteur");
+        $horsForfaitMois = FicheFrais::where("refVisiteur", "=", $Visiteur->id);
+
+        return view("gsb.frais.hors-forfait.mois", compact($horsForfaitMois));
+    }
+
+    /**
 	 * Deletes a FraisHorsForfait from the DB
 	 *
 	 * @param int $idFrais
@@ -161,3 +173,4 @@ class FraisController extends Controller
 		return redirect(route("gsb.frais.horsforfait.index"));
 	}
 }
+

@@ -45,6 +45,11 @@
                         Frais Hors Forfait
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route("gsb.frais.horsforfait.mois") }}">
+                        Mois Hors Forfait
+                    </a>
+                </li>
             </ul>
         @endif
     </div>
