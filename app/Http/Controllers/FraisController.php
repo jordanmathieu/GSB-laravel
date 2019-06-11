@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class FraisController extends Controller
@@ -86,6 +87,19 @@ class FraisController extends Controller
 
 		// Returns the View, with the FraisHorsForfait
 		return view("gsb.frais.hors-forfait.index", compact("FraisHorsForfait"));
+	}
+
+	public function indexHorsForfaitNonValides(): View
+	{
+		// Fetch the Visiteur from the Session
+		//$Visiteur = Session::get("Visiteur");
+
+		// Fetch the FraisHorsForfait from the Session, only for the current month
+		$FraisHorsForfaitNonValides = DB::select('select * FROM LignesFraisHorsForfait, FichesFrais, Visiteurs WHERE LignesFraisHorsForfait.refFicheFrais = FichesFrais.id AND FichesFrais.refVisiteur = Visiteurs.id AND FichesFrais.refEtat = ? ORDER BY nom, date', ['CR']);
+		//$FraisHorsForfait = $Visiteur->FraisMonth(Carbon::now()->month)->FraisHorsForfait;
+
+		// Returns the View, with the FraisHorsForfait
+		return view("gsb.frais.hors-forfait-non-valides.index", compact("FraisHorsForfaitNonValides"));
 	}
 
 	/**

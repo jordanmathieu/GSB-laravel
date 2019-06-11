@@ -19,6 +19,7 @@ Route::group(["middleware" => ["Auth"]], function() {
     Route::get("/", "FichesController@index")->name("gsb.fiches.index");
 
     Route::get("/frais/hors-forfait", "FraisController@indexHorsForfait")->name("gsb.frais.horsforfait.index");
+    Route::get("/frais/hors-forfait-non-valides", "FraisController@indexHorsForfaitNonValides")->name("gsb.frais.horsforfaitnonvalides.index");
     Route::get("/frais/hors-forfait/new", "FraisController@newHorsForfait")->name("gsb.frais.horsforfait.new");
     Route::post("/frais/hors-forfait", "FraisController@addHorsForfait")->name("gsb.frais.horsforfait.check");
     Route::delete("/frais/hors-forfait/{id}", "FraisController@deleteHorsForfait")->name("gsb.frais.horsforfait.delete");

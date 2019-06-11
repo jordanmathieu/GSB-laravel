@@ -45,6 +45,11 @@
                         Frais Hors Forfait
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route("gsb.frais.horsforfaitnonvalides.index") }}">
+                        Lignes de frais hors-forfait non validés
+                    </a>
+                </li>
             </ul>
         @endif
     </div>
