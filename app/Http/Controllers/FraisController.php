@@ -23,7 +23,8 @@ class FraisController extends Controller
 		// Fetch the Visiteur from the Session
 		$Visiteur = Session::get("Visiteur");
 
-		$FicheFrais = $Visiteur->FraisMonth(Carbon::now()->month)->with('LignesFraisForfait.TypeFraisForfait')->get()[0];
+		$FicheFrais = $Visiteur->FraisMonth(Carbon::now()->month);
+		$FicheFrais->load('LignesFraisForfait.TypeFraisForfait');
 
 		// If the FicheFrais doesn't have a LignesFraisForfait, that's create then
 		if ($FicheFrais->LignesFraisForfait->isEmpty()) {
